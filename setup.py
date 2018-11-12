@@ -25,7 +25,7 @@ setup(
     description='Implementation of Random subwindows and Extra-Trees algorithm.',
     long_description=long_description,
     long_description_content_type="text/markdown",
-    packages=['pyxit', 'pyxit.estimator'],
+    packages=['pyxit'],
     url='http://uliege.cytomine.org',
     classifiers=[
         'License :: OSI Approved :: Apache Software License',

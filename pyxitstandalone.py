@@ -25,20 +25,17 @@ __copyright__       = "Copyright 2010-2015 University of Liège, Belgium, http:/
 
 import cPickle as pickle
 import numpy as np
-import sys
 
-from sklearn.cross_validation import StratifiedKFold, ShuffleSplit, StratifiedShuffleSplit
+from sklearn.cross_validation import StratifiedKFold, ShuffleSplit
 from sklearn.ensemble import ExtraTreesClassifier, RandomForestClassifier
 from sklearn import neighbors
 
 from sklearn.metrics import confusion_matrix
-from sklearn.pipeline import Pipeline
 from sklearn.svm import SVC, LinearSVC
 from sklearn.linear_model import LogisticRegression
-from sklearn.utils import check_random_state
 
-from data import build_from_dir
-from estimator import PyxitClassifier, MAX_INT
+from pyxit.data import build_from_dir
+from pyxit.estimator import PyxitClassifier
 
 import optparse
 
