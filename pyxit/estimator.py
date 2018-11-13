@@ -2,7 +2,7 @@
 
 
 #
-# * Copyright (c) 2009-2015. Authors: see NOTICE file.
+# * Copyright (c) 2009-2018.
 # *
 # * Licensed under the Apache License, Version 2.0 (the "License");
 # * you may not use this file except in compliance with the License.
@@ -19,7 +19,7 @@
 
 __author__ = "Gilles Louppe"
 __contributors__ = ["Marée Raphaël <raphael.maree@ulg.ac.be>", "Stévens Benjamin <b.stevens@ulg.ac.be>", "Mormont Romain <r.mormont@ulg.ac.be>"]
-__copyright__ = "Copyright 2010-2015 University of Liège, Belgium, http://www.cytomine.be/"
+__copyright__ = "Copyright 2010-2018 University of Liège, Belgium, http://www.cytomine.be/"
 
 import numpy as np
 import sys
