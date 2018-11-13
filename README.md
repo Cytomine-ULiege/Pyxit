@@ -18,3 +18,8 @@ Fast Multi-Class Image Annotation with Random Subwindows and Multiple Output Ran
 Dumont et al., 2009
 http://orbi.ulg.ac.be/handle/2268/12205
 
+# Install
+Simply: 
+```
+pip install pyxit
+```
