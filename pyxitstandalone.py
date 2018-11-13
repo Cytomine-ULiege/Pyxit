@@ -34,7 +34,7 @@ from sklearn.metrics import confusion_matrix
 from sklearn.svm import SVC, LinearSVC
 from sklearn.linear_model import LogisticRegression
 
-from pyxit.data import build_from_dir
+from data import build_from_dir
 from pyxit.estimator import PyxitClassifier
 
 import optparse
