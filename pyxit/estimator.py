@@ -489,3 +489,40 @@ class PyxitClassifier(BaseEstimator, ClassifierMixin):
 
         # Scale features from [0, max] to [0, 1]
         return normalize(__X, norm="max", axis=0, copy=False)
+
+
+class SvmPyxitClassifier(BaseEstimator, ClassifierMixin):
+    def __init__(self, pyxit_base_estimator, svm_estimator):
+        """An estimator implementing the ET-FT variant of Random subwindows and ExtraTrees"""
+        self._pyxit = pyxit_base_estimator
+        self._svm = svm_estimator
+
+    @property
+    def pyxit(self):
+        return self._pyxit
+
+    @property
+    def svm(self):
+        return self._svm
+
+    def fit(self, x, y, _x=None, _y=None):
+        if _x is None or _y is None:
+            _x, _y = self._pyxit.extract_subwindows(x, y)
+        self._pyxit.fit(x, y, _X=_x, _y=_y)
+        features = self._pyxit.transform(x, _X=_x, reset=True)
+        self._svm.fit(features, y)
+        return self
+
+    def predict(self, svm, x, _x=None):
+        if _x is None:
+            y = np.zeros(x.shape[0])
+            _x, _ = self._pyxit.extract_subwindows(x, y)
+        xt = self._pyxit.transform(x, _X=_x)
+        return svm.predict(xt)
+
+    def decision_function(self, svm, x, _x=None):
+        if _x is None:
+            y = np.zeros(x.shape[0])
+            _x, _ = self._pyxit.extract_subwindows(x, y)
+        xt = self._pyxit.transform(x, _X=_x)
+        return svm.decision_function(xt)
