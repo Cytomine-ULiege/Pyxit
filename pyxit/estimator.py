@@ -509,7 +509,7 @@ class SvmPyxitClassifier(BaseEstimator, ClassifierMixin):
         if _x is None or _y is None:
             _x, _y = self._pyxit.extract_subwindows(x, y)
         self._pyxit.fit(x, y, _X=_x, _y=_y)
-        features = self._pyxit.transform(x, _X=_x, reset=True)
+        features = self._pyxit.transform(x, _X=_x)
         self._svm.fit(features, y)
         return self
 
