@@ -513,12 +513,12 @@ class SvmPyxitClassifier(BaseEstimator, ClassifierMixin):
         self._svm.fit(features, y)
         return self
 
-    def predict(self, svm, x, _x=None):
+    def predict(self, x, _x=None):
         if _x is None:
             y = np.zeros(x.shape[0])
             _x, _ = self._pyxit.extract_subwindows(x, y)
         xt = self._pyxit.transform(x, _X=_x)
-        return svm.predict(xt)
+        return self._svm.predict(xt)
 
     def decision_function(self, svm, x, _x=None):
         if _x is None:

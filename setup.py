@@ -21,7 +21,7 @@ with open("README.md", "r") as fh:
 
 setup(
     name='pyxit',
-    version='1.1.2',
+    version='1.1.3',
     description='Implementation of Random subwindows and Extra-Trees algorithm.',
     long_description=long_description,
     long_description_content_type="text/markdown",
