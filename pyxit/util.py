@@ -55,8 +55,7 @@ def build_models(n_subwindows=10, min_size=0.5, max_size=1.0, target_width=16, t
     pyxit: PyxitClassifier|SvmPyxitClassifier
         (Svm) Pyxit classifier
     """
-    # make sure n_jobs is only used for parallelizing at the PyxitClassifier level (data parallelism)
-    base_estimator_params.pop("n_jobs")
+    n_jobs = base_estimator_params.get("n_jobs", 1)
     random_state = check_random_state(random_state)
     et = ExtraTreesClassifier(random_state=random_state, **base_estimator_params)
     pyxit = PyxitClassifier(
@@ -66,7 +65,7 @@ def build_models(n_subwindows=10, min_size=0.5, max_size=1.0, target_width=16, t
         max_size=max_size,
         target_height=target_height,
         target_width=target_width,
-        n_jobs=1,  # n_jobs is used to
+        n_jobs=n_jobs,
         colorspace=colorspace,
         fixed_size=fixed_size,
         interpolation=interpolation,
