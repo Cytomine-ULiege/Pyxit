@@ -32,7 +32,7 @@ except:
 from scipy.sparse import csr_matrix
 
 from sklearn.base import BaseEstimator, ClassifierMixin
-from sklearn.externals.joblib import Parallel, delayed, cpu_count
+from joblib import Parallel, delayed, cpu_count
 from sklearn.utils import check_random_state
 from sklearn.preprocessing import normalize
 
@@ -505,19 +505,19 @@ class SvmPyxitClassifier(BaseEstimator, ClassifierMixin):
     def svm(self):
         return self._svm
 
-    def fit(self, x, y, _x=None, _y=None):
-        if _x is None or _y is None:
-            _x, _y = self._pyxit.extract_subwindows(x, y)
-        self._pyxit.fit(x, y, _X=_x, _y=_y)
-        features = self._pyxit.transform(x, _X=_x)
+    def fit(self, x, y, _X=None, _y=None):
+        if _X is None or _y is None:
+            _X, _y = self._pyxit.extract_subwindows(x, y)
+        self._pyxit.fit(x, y, _X=_X, _y=_y)
+        features = self._pyxit.transform(x, _X=_X)
         self._svm.fit(features, y)
         return self
 
-    def predict(self, x, _x=None):
-        if _x is None:
+    def predict(self, x, _X=None):
+        if _X is None:
             y = np.zeros(x.shape[0])
-            _x, _ = self._pyxit.extract_subwindows(x, y)
-        xt = self._pyxit.transform(x, _X=_x)
+            _X, _ = self._pyxit.extract_subwindows(x, y)
+        xt = self._pyxit.transform(x, _X=_X)
         return self._svm.predict(xt)
 
     def decision_function(self, svm, x, _x=None):
